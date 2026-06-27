@@ -11,16 +11,37 @@ Custom modules and the Freedom theme live in separate GitHub repos:
 | [Omeka-S-module-ContributeEnhancements](https://github.com/c-host/Omeka-S-module-ContributeEnhancements) | Contribute workflow |
 | [freedom](https://github.com/c-host/freedom) | Freedom theme fork |
 
+## How this relates to Ghent Docker
+
+[Ghent Omeka-S-Docker](https://github.com/GhentCDH/Omeka-S-Docker) out of the box:
+
+1. Copy `example.env` → `.env` and edit values.
+2. Run `docker compose up` (builds the image on first run).
+3. Store Omeka data in a **Docker named volume** (`omeka:/volume` in `compose.yaml`) — nothing under `./data/omeka/` on the host.
+4. At container start, entrypoint scripts create `database.ini`, **download** modules/themes listed in `OMEKA_S_MODULES` / `OMEKA_S_THEMES`, and optionally **install** core/modules when `OMEKA_S_INSTALL_CORE=1` / `OMEKA_S_INSTALL_MODULES=1`.
+
+**Dineba adds** (via this repo):
+
+- A full `.env` recipe (stock modules + custom ZIP URLs).
+- `compose.override.yaml` from `compose.override.example.yaml` — bind-mounts `./data/omeka` onto `/volume` so files are visible on the host, plus a startup hook that installs `ka.mo`.
+- Georgian i18n sources under `i18n/`.
+
+You do **not** need to create `data/omeka/config`, `modules`, `themes`, etc. by hand — Ghent’s entrypoint creates and populates them on first boot. The only host path you may prepare yourself is `data/omeka/i18n/` if you want `ka.mo` in place before the first start (see [i18n/README.md](i18n/README.md)).
+
 ## Layout on disk
 
 ```
 ~/projects/dineba-omeka/
-├── omeka-instance-dineba/     ← this repo (clone as `config` or any name)
-└── ghent-omeka-s-docker/    ← git clone upstream Ghent Docker
-    ├── .env                 ← copy from config/.env.example (not committed here)
-    ├── compose.override.yaml
-    └── data/omeka/          ← persistent Omeka data (gitignored by Ghent)
+├── config/                  ← this repo (clone name is arbitrary)
+└── ghent-omeka-s-docker/    ← upstream: git clone GhentCDH/Omeka-S-Docker
+    ├── .env                 ← copy from config/.env.example (replaces example.env)
+    ├── compose.override.yaml  ← copy from config/compose.override.example.yaml (not in upstream)
+    └── data/
+        ├── db-init/         ← from upstream (optional SQL seed on first DB start)
+        └── omeka/           ← created by bind mount; populated at container start
 ```
+
+Upstream only ships `data/db-init/`. The `data/omeka/` tree exists because **our** compose override maps it to `/volume`.
 
 ## First-time setup (new machine)
 
@@ -32,45 +53,37 @@ cp config/.env.example ghent-omeka-s-docker/.env
 cp config/compose.override.example.yaml ghent-omeka-s-docker/compose.override.yaml
 ```
 
-Edit `ghent-omeka-s-docker/.env`: set admin email/password, and confirm release ZIP URLs match uploaded GitHub Release assets (see below).
+Edit `ghent-omeka-s-docker/.env`:
+
+- Set admin email/password.
+- Confirm release ZIP URLs match uploaded GitHub Release assets (see below).
+- For a **brand-new** Omeka install (empty database), set `OMEKA_S_INSTALL_CORE=1` and `OMEKA_S_INSTALL_MODULES=1` for the first `docker compose up`, then set both back to `0` (re-runs are safe — install scripts skip when already installed).
+- For an **existing** Dineba database restore, keep `OMEKA_S_INSTALL_CORE=0` and `OMEKA_S_INSTALL_MODULES=0`.
+
+Optional — Georgian locale before first start:
+
+```bash
+mkdir -p ghent-omeka-s-docker/data/omeka/i18n
+cp config/i18n/ka.mo ghent-omeka-s-docker/data/omeka/i18n/ka.mo   # after building ka.mo
+```
+
+Start (first run builds the image; may take several minutes):
 
 ```bash
 cd ghent-omeka-s-docker
-mkdir -p data/omeka/{config,files,modules,themes,logs,i18n}
 docker compose up -d
 ```
 
-For an **existing** Dineba database, keep `OMEKA_S_INSTALL_CORE=0` and `OMEKA_S_INSTALL_MODULES=0`.
+Omeka: [http://localhost:8080](http://localhost:8080) (or `OMEKA_S_EXPOSED_PORT`). PHPMyAdmin and Mailpit use the ports documented in [upstream README](https://github.com/GhentCDH/Omeka-S-Docker#configuration).
 
-## Release ZIPs (required before ZIP URLs work)
 
-GitHub **tags alone are not enough** — each release needs a **zip asset** uploaded. The top-level folder inside each zip must match Omeka’s directory name:
+## Upgrading modules
 
-| Zip asset name | Folder inside zip |
-|----------------|-------------------|
-| `InternetArchiveInboundSync.zip` | `InternetArchiveInboundSync/` |
-| `InternetArchiveOutboundSync.zip` | `InternetArchiveOutboundSync/` |
-| `ContributeEnhancements.zip` | `ContributeEnhancements/` |
-| `freedom.zip` | `freedom/` |
+Per [Ghent’s module download docs](https://github.com/GhentCDH/Omeka-S-Docker#download-modules-at-startup), modules are downloaded at startup; **existing module directories are not overwritten**. That is normal during migration or when upgrading (remove the module folder first — see below).
 
-Build zips from the shared workspace script (see [dev-docs/release-zips.md](../dev-docs/release-zips.md)), upload to each repo’s GitHub Release, then set URLs in `.env`:
+## In-place migration (dev bind-mounts → on-disk modules)
 
-```bash
-# From your omeka-s workspace (not the instance config repo)
-bash scripts/build-release-zips.sh
-```
-
-Output: `release-zips/` next to your module clones (when run from the `omeka-s` workspace).
-
-```text
-https://github.com/c-host/Omeka-S-module-InternetArchiveInboundSync/releases/download/v1.3.0/InternetArchiveInboundSync.zip
-```
-
-If a module directory **already exists** under `data/omeka/modules/`, Ghent Docker skips download — that is normal during migration.
-
-## In-place migration (bind-mount → on-disk modules)
-
-Use this when Dineba already runs with modules bind-mounted from sibling folders.
+Use this only when Dineba already runs with modules bind-mounted from sibling source folders (a local dev pattern, not upstream Ghent).
 
 ### 1. Backup
 
@@ -86,7 +99,7 @@ docker compose stop omeka
 cp -a ../InternetArchiveInboundSync   data/omeka/modules/InternetArchiveInboundSync
 cp -a ../InternetArchiveOutboundSync  data/omeka/modules/InternetArchiveOutboundSync
 cp -a ../ContributeEnhancements       data/omeka/modules/ContributeEnhancements
-cp -a ../freedom-theme              data/omeka/themes/freedom
+cp -a ../freedom-theme                data/omeka/themes/freedom
 ```
 
 ### 3. Remove bind-mounts from compose override
@@ -101,7 +114,7 @@ cp -a ../freedom-theme              data/omeka/themes/freedom
 
 ### 5. Georgian locale (`ka.mo`)
 
-See [i18n/README.md](i18n/README.md). Copy compiled `ka.mo` to `ghent-omeka-s-docker/data/omeka/i18n/ka.mo`.
+See [i18n/README.md](i18n/README.md). Place compiled `ka.mo` at `ghent-omeka-s-docker/data/omeka/i18n/ka.mo`.
 
 ### 6. Start and verify
 
@@ -124,13 +137,13 @@ The [Freedom theme fork](https://github.com/c-host/freedom) can show a language 
 
 ## Security
 
-- Copy `.env.example` to `.env` locally — **do not commit** `.env` (it is gitignored).
+- Copy `.env.example` to `.env` locally — **do not commit** `.env` (Ghent gitignores `.env`).
 - If credentials were ever committed, rotate the admin password and use `git rm --cached .env` before pushing.
 
 ## Upgrading a custom module
 
 1. Tag and publish a new GitHub Release with an uploaded zip.
-2. Update the ZIP URL in `.env`.
+2. Update the tag segment in the ZIP URL in `.env` (zip filename stays the same).
 3. `docker compose stop omeka && rm -rf data/omeka/modules/ModuleName`
 4. `docker compose up -d`
 5. **Admin → Modules → Upgrade**

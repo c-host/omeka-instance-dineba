@@ -1,3 +1,7 @@
+# Copy to compose.override.yaml in your Ghent Docker clone (upstream does not ship this file).
+# Replaces the default named volume with a host directory so Omeka data is visible under ./data/omeka.
+# Also copies Georgian ka.mo into the core language directory on container start.
+
 services:
   omeka:
     volumes:
