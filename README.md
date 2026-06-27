@@ -33,7 +33,7 @@ You do **not** need to create `data/omeka/config`, `modules`, `themes`, etc. by 
 ```
 ~/projects/dineba-omeka/
 ├── config/                  ← this repo (clone name is arbitrary)
-└── ghent-omeka-s-docker/    ← upstream: git clone GhentCDH/Omeka-S-Docker
+└── Omeka-S-Docker/    ← upstream: git clone GhentCDH/Omeka-S-Docker
     ├── .env                 ← copy from config/.env.example (replaces example.env)
     ├── compose.override.yaml  ← copy from config/compose.override.example.yaml (not in upstream)
     └── data/
@@ -48,12 +48,12 @@ Upstream only ships `data/db-init/`. The `data/omeka/` tree exists because **our
 ```bash
 mkdir -p ~/projects/dineba-omeka && cd ~/projects/dineba-omeka
 git clone https://github.com/c-host/omeka-instance-dineba.git config
-git clone https://github.com/GhentCDH/Omeka-S-Docker.git ghent-omeka-s-docker
-cp config/.env.example ghent-omeka-s-docker/.env
-cp config/compose.override.example.yaml ghent-omeka-s-docker/compose.override.yaml
+git clone https://github.com/GhentCDH/Omeka-S-Docker.git Omeka-S-Docker
+cp config/.env.example Omeka-S-Docker/.env
+cp config/compose.override.example.yaml Omeka-S-Docker/compose.override.yaml
 ```
 
-Edit `ghent-omeka-s-docker/.env`:
+Edit `Omeka-S-Docker/.env`:
 
 - Set admin email/password.
 - Confirm release ZIP URLs match uploaded GitHub Release assets (see below).
@@ -63,14 +63,14 @@ Edit `ghent-omeka-s-docker/.env`:
 Optional — Georgian locale before first start:
 
 ```bash
-mkdir -p ghent-omeka-s-docker/data/omeka/i18n
-cp config/i18n/ka.mo ghent-omeka-s-docker/data/omeka/i18n/ka.mo   # after building ka.mo
+mkdir -p Omeka-S-Docker/data/omeka/i18n
+cp config/i18n/ka.mo Omeka-S-Docker/data/omeka/i18n/ka.mo   # after building ka.mo
 ```
 
 Start (first run builds the image; may take several minutes):
 
 ```bash
-cd ghent-omeka-s-docker
+cd Omeka-S-Docker
 docker compose up -d
 ```
 
@@ -79,32 +79,7 @@ Omeka: [http://localhost:8080](http://localhost:8080) (or `OMEKA_S_EXPOSED_PORT`
 
 ## Upgrading modules
 
-Per [Ghent’s module download docs](https://github.com/GhentCDH/Omeka-S-Docker#download-modules-at-startup), modules are downloaded at startup; **existing module directories are not overwritten**. That is normal during migration or when upgrading (remove the module folder first — see below).
-
-## In-place migration (dev bind-mounts → on-disk modules)
-
-Use this only when Dineba already runs with modules bind-mounted from sibling source folders (a local dev pattern, not upstream Ghent).
-
-### 1. Backup
-
-```bash
-cd ghent-omeka-s-docker
-docker compose exec -T db mariadb-dump -uomeka -pomeka omeka > ~/dineba-omeka-backup-$(date +%Y%m%d).sql
-```
-
-### 2. Copy module and theme code into the volume
-
-```bash
-docker compose stop omeka
-cp -a ../InternetArchiveInboundSync   data/omeka/modules/InternetArchiveInboundSync
-cp -a ../InternetArchiveOutboundSync  data/omeka/modules/InternetArchiveOutboundSync
-cp -a ../ContributeEnhancements       data/omeka/modules/ContributeEnhancements
-cp -a ../freedom-theme                data/omeka/themes/freedom
-```
-
-### 3. Remove bind-mounts from compose override
-
-`compose.override.yaml` should match `compose.override.example.yaml` in this repo (data volume + `ka.mo` hook only — **no** `../InternetArchive*` volume lines).
+Per [Ghent’s module download docs](https://github.com/GhentCDH/Omeka-S-Docker#download-modules-at-startup), modules are downloaded at startup; **existing module directories are not overwritten**. To pull a new release version, remove the module folder first, then restart (see below).
 
 ### 4. Update `.env`
 
@@ -126,14 +101,24 @@ Admin → Modules: IA Inbound, IA Outbound, Contribute Enhancements, Internation
 
 ## Language switcher (Dineba)
 
-The [Freedom theme fork](https://github.com/c-host/freedom) can show a language switcher when enabled per site.
+The [Freedom theme fork](https://github.com/c-host/freedom) can show a language switcher when enabled **per site**.
+
+### Where to turn it on/off
+
+**Admin → Sites →** click the site name → **Theme** (left sidebar) → **Configure**
+
+Under the **Header** section, check or uncheck **Show language switcher** (off by default). Repeat for each site that should show the switcher.
+
+The setting is stored in the theme config (`show_language_switcher` in `config/theme.ini`). The switcher stays hidden if the box is unchecked, Internationalisation is inactive, or only one locale is available for the site group.
+
+### Full setup (first time)
 
 1. **Modules →** install and activate **Internationalisation**.
 2. **Admin → Settings → Internationalisation** — add site groups (one line per group, space-separated slugs), e.g. `dineba dineba-ka`.
 3. **Admin → Sites →** each site → **Settings → Language** — distinct locale per site (`en` / `en_US` for English, `ka` for Georgian).
 4. Create **matching pages and navigation** on both sites so the switcher keeps visitors on the equivalent page.
-5. **Admin → Sites →** each site → **Theme** → **Configure** → enable **Show language switcher** (off by default).
-6. Install `ka.mo` (see i18n/) and configure Internationalisation language files under `data/omeka/files/language/` as needed.
+5. **Admin → Sites →** each site → **Theme → Configure → Header** → enable **Show language switcher**.
+6. Install `ka.mo` (see [i18n/README.md](i18n/README.md)) and configure Internationalisation language files under `data/omeka/files/language/` as needed.
 
 ## Security
 

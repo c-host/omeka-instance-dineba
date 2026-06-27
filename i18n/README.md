@@ -20,13 +20,13 @@ In this project, we provide the Georgian (`ka`) translation (`ka.mo`) for Omeka 
 ## How to Use in Docker Environment
 
 - The expected location for Dockerized Omeka S is:  
-  `ghent-omeka-s-docker/data/omeka/i18n/ka.mo`
+  `Omeka-S-Docker/data/omeka/i18n/ka.mo`
 
-- After building/updating `ka.mo`, copy the file into the Docker data volume, e.g.:
+- After building/updating `ka.mo`, copy the file into the Docker data volume, e.g. from this directory:
 
-  ```bash
-  cp ka.mo ../../ghent-omeka-s-docker/data/omeka/i18n/ka.mo
-  ```
+   ```bash
+   cp ka.mo /path/to/Omeka-S-Docker/data/omeka/i18n/ka.mo
+   ```
 
 - On (re)starting the container, the file will be copied into the correct place inside the application (see `compose.override.example.yaml` for details).
 
