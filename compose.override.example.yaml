@@ -1,0 +1,13 @@
+services:
+  omeka:
+    volumes:
+      - ./data/omeka:/volume
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        if [ -f /volume/i18n/ka.mo ]; then
+          cp /volume/i18n/ka.mo /var/www/omeka-s/application/language/ka.mo
+          chmod 644 /var/www/omeka-s/application/language/ka.mo
+          echo "Installed Georgian locale: /var/www/omeka-s/application/language/ka.mo"
+        fi
+        exec /entrypoint supervisord

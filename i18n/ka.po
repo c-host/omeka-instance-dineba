@@ -1,0 +1,591 @@
+# Georgian translations for Omeka S (dineba-ka)
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka S dineba-ka\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Title"
+msgstr "სათაური"
+
+msgid "Alternative Title"
+msgstr "ალტერნატიული სათაური"
+
+msgid "Creator"
+msgstr "შემქმნელი"
+
+msgid "Contributor"
+msgstr "წვლილემორთი"
+
+msgid "Subject"
+msgstr "თემა"
+
+msgid "Description"
+msgstr "აღწერა"
+
+msgid "Publisher"
+msgstr "გამომცემელი"
+
+msgid "Date"
+msgstr "თარიღი"
+
+msgid "Type"
+msgstr "ტიპი"
+
+msgid "Format"
+msgstr "ფორმატი"
+
+msgid "Identifier"
+msgstr "იდენტიფიკატორი"
+
+msgid "Source"
+msgstr "წყარო"
+
+msgid "Language"
+msgstr "ენა"
+
+msgid "Relation"
+msgstr "ურთიერთობა"
+
+msgid "Coverage"
+msgstr "დაფარვა"
+
+msgid "Rights"
+msgstr "უფლებები"
+
+msgid "Rights Holder"
+msgstr "უფლებების მფლობელი"
+
+msgid "License"
+msgstr "ლიცენზია"
+
+msgid "Extent"
+msgstr "მოცულობა"
+
+msgid "Is Replaced By"
+msgstr "ჩანაცვლებულია"
+
+msgid "Replaces"
+msgstr "ცვლის"
+
+msgid "Spatial Coverage"
+msgstr "სივრცითი დაფარვა"
+
+msgid "Spatial Coverage (Place)"
+msgstr "სივრცითი დაფარვა (ადგილი)"
+
+msgid "Temporal Coverage"
+msgstr "დროებითი დაფარვა"
+
+msgid "Abstract"
+msgstr "ანოტაცია"
+
+msgid "Access Rights"
+msgstr "წვდომის უფლებები"
+
+msgid "Audience"
+msgstr "აუდიტორია"
+
+msgid "Bibliographic Citation"
+msgstr "ბიბლიოგრაფიული მიხსნა"
+
+msgid "Conforms To"
+msgstr "შეესაბამება"
+
+msgid "Has Format"
+msgstr "აქვს ფორმატი"
+
+msgid "Has Part"
+msgstr "შეიცავს ნაწილს"
+
+msgid "Has Version"
+msgstr "აქვს ვერსია"
+
+msgid "Is Format Of"
+msgstr "ფორმატია"
+
+msgid "Is Part Of"
+msgstr "ნაწილია"
+
+msgid "Is Referenced By"
+msgstr "მოხსენიებულია"
+
+msgid "Is Required By"
+msgstr "საჭიროა"
+
+msgid "Is Version Of"
+msgstr "ვერსიაა"
+
+msgid "Mediator"
+msgstr "მედიატორი"
+
+msgid "Medium"
+msgstr "საშუალო"
+
+msgid "Provenance"
+msgstr "წარმოშობა"
+
+msgid "References"
+msgstr "მითითებები"
+
+msgid "Requires"
+msgstr "საჭიროებს"
+
+msgid "Table Of Contents"
+msgstr "სარჩევი"
+
+msgid "Date Accepted"
+msgstr "მიღების თარიღი"
+
+msgid "Date Available"
+msgstr "ხელმისაწვდომობის თარიღი"
+
+msgid "Date Copyrighted"
+msgstr "საავტორო უფლების თარიღი"
+
+msgid "Date Created"
+msgstr "შექმნის თარიღი"
+
+msgid "Date Issued"
+msgstr "გამოცემის თარიღი"
+
+msgid "Date Modified"
+msgstr "შეცვლის თარიღი"
+
+msgid "Date Submitted"
+msgstr "წარდგენის თარიღი"
+
+msgid "Date Valid"
+msgstr "მოქმედების თარიღი"
+
+msgid "Instructional Method"
+msgstr "სასწავლო მეთოდი"
+
+msgid "Accrual Method"
+msgstr "დაგროვების მეთოდი"
+
+msgid "Accrual Periodicity"
+msgstr "დაგროვების პერიოდულობა"
+
+msgid "Accrual Policy"
+msgstr "დაგროვების პოლიტიკა"
+
+msgid "Audience Education Level"
+msgstr "აუდიტორიის საგანმანათლებლო დონე"
+
+msgid "has purpose"
+msgstr "აქვს მიზანი"
+
+msgid "has source"
+msgstr "აქვს წყარო"
+
+msgid "motivated by"
+msgstr "მოტივაცია"
+
+msgid "value"
+msgstr "მნიშვნელობა"
+
+msgid "name"
+msgstr "სახელი"
+
+msgid "label"
+msgstr "ჭდე"
+
+msgid "comment"
+msgstr "კომენტარი"
+
+msgid "homepage"
+msgstr "მთავარი გვერდი"
+
+msgid "thumbnail"
+msgstr "მინიატურა"
+
+msgid "depicts"
+msgstr "გამოსახავს"
+
+msgid "depiction"
+msgstr "გამოსახულება"
+
+msgid "made"
+msgstr "შექმნილია"
+
+msgid "maker"
+msgstr "შემქმნელი"
+
+msgid "member"
+msgstr "წევრი"
+
+msgid "owner"
+msgstr "მფლობელი"
+
+msgid "page"
+msgstr "გვერდი"
+
+msgid "uri"
+msgstr "URI"
+
+msgid "url"
+msgstr "URL"
+
+msgid "Items"
+msgstr "ნივთები"
+
+msgid "Item Set"
+msgstr "ნივთების ჯგუფი"
+
+msgid "Item sets"
+msgstr "ნივთების ჯგუფები"
+
+msgid "Advanced search"
+msgstr "გაფართოებული ძებნა"
+
+msgid "Grid"
+msgstr "ბადე"
+
+msgid "List"
+msgstr "სია"
+
+msgid "[Untitled]"
+msgstr "[უსახელო]"
+
+msgid "(Private)"
+msgstr "(პირადი)"
+
+msgid " (Private)"
+msgstr " (პირადი)"
+
+msgid "Skip to main content"
+msgstr "გადადით მთავარ შიგთავსზე"
+
+msgid "Toggle search"
+msgstr "ძებნის ჩართვა"
+
+msgid "Maps"
+msgstr "რუკები"
+
+msgid "Map"
+msgstr "რუკა"
+
+msgid "Search Map"
+msgstr "რუკის ძებნა"
+
+msgid "Sort by"
+msgstr "დალაგება"
+
+msgid "Sort order"
+msgstr "რიგი"
+
+msgid "Ascending"
+msgstr "ზრდადობით"
+
+msgid "Descending"
+msgstr "კლებადობით"
+
+msgid "Sort"
+msgstr "დალაგება"
+
+msgid "Resource class"
+msgstr "რესურსის კლასი"
+
+msgid "Created"
+msgstr "შექმნის თარიღი"
+
+msgid "Relevance"
+msgstr "რელევანტულობა"
+
+msgid "Select sort by…"
+msgstr "აირჩიეთ დალაგება…"
+
+msgid "Select sort order…"
+msgstr "აირჩიეთ რიგი…"
+
+msgid "Pagination"
+msgstr "გვერდები"
+
+msgid "Page"
+msgstr "გვერდი"
+
+msgid "of %s"
+msgstr "%s-დან"
+
+msgid "%1$s–%2$s of %3$s"
+msgstr "%3$s-დან %1$s–%2$s"
+
+msgid "0 results"
+msgstr "შედეგი არ არის"
+
+msgid "Previous"
+msgstr "წინა"
+
+msgid "Next"
+msgstr "შემდეგი"
+
+msgid "Advanced item search"
+msgstr "ნივთების დეტალური ძებნა"
+
+msgid "Search"
+msgstr "ძებნა"
+
+msgid "Reset"
+msgstr "გასუფთავება"
+
+msgid "Search full-text"
+msgstr "სრულტექსტური ძებნა"
+
+msgid "Search by value"
+msgstr "ძებნა მნიშვნელობით"
+
+msgid "Add new value"
+msgstr "ახალი მნიშვნელობის დამატება"
+
+msgid "Joiner"
+msgstr "დამაყოლებელი"
+
+msgid "AND"
+msgstr "და"
+
+msgid "OR"
+msgstr "ან"
+
+msgid "Property"
+msgstr "თვისება"
+
+msgid "[Any Property]"
+msgstr "[ნებისმიერი თვისება]"
+
+msgid "Query type"
+msgstr "მოთხოვნის ტიპი"
+
+msgid "is exactly"
+msgstr "ზუსტად არის"
+
+msgid "is not exactly"
+msgstr "ზუსტად არ არის"
+
+msgid "contains"
+msgstr "შეიცავს"
+
+msgid "does not contain"
+msgstr "არ შეიცავს"
+
+msgid "starts with"
+msgstr "იწყება"
+
+msgid "does not start with"
+msgstr "არ იწყება"
+
+msgid "ends with"
+msgstr "მთავრდება"
+
+msgid "does not end with"
+msgstr "არ მთავრდება"
+
+msgid "is resource with ID"
+msgstr "რესურსია ID-ით"
+
+msgid "is not resource with ID"
+msgstr "არ არის რესურსი ID-ით"
+
+msgid "has any value"
+msgstr "აქვს მნიშვნელობა"
+
+msgid "has no values"
+msgstr "მნიშვნელობა არ აქვს"
+
+msgid "has data type"
+msgstr "აქვს მონაცემთა ტიპი"
+
+msgid "does not have data type"
+msgstr "არ აქვს მონაცემთა ტიპი"
+
+msgid "Query text"
+msgstr "მოთხოვნის ტექსტი"
+
+msgid "Select data type…"
+msgstr "აირჩიეთ მონაცემთა ტიპი…"
+
+msgid "Remove value"
+msgstr "მნიშვნელობის წაშლა"
+
+msgid "Search by class"
+msgstr "ძებნა კლასით"
+
+msgid "Searches for resources that are any of these classes."
+msgstr "ძებნა რესურსებში, რომლებიც ამ კლასების რომელიმეს ეკუთვნის."
+
+msgid "Class"
+msgstr "კლასი"
+
+msgid "Select class…"
+msgstr "აირჩიეთ კლასი…"
+
+msgid "Add new class"
+msgstr "ახალი კლასის დამატება"
+
+msgid "Expand"
+msgstr "გაშლა"
+
+msgid "Search by media presence"
+msgstr "ძებნა მედიის არსებობით"
+
+msgid "Has media"
+msgstr "აქვს მედია"
+
+msgid "Has no media"
+msgstr "მედია არ აქვს"
+
+msgid "Select media presence…"
+msgstr "აირჩიეთ მედიის არსებობა…"
+
+msgid "Search by ID"
+msgstr "ძებნა ID-ით"
+
+msgid "Searches for resources by Omeka S ID. You can search for more than one ID by separating them by commas."
+msgstr "ძებნა Omeka S ID-ით. რამდენიმე ID-ისთვის გამოიყენეთ მძიმე გამყოფად."
+
+msgid "Search by item set"
+msgstr "ძებნა ნივთების ჯგუფით"
+
+msgid "Searches for items that are assigned to any of these item sets."
+msgstr "ძებნა ნივთებში, რომლებიც ამ ნივთების ჯგუფების რომელიმეს ეკუთვნის."
+
+msgid "Condition"
+msgstr "პირობა"
+
+msgid "In"
+msgstr "შედის"
+
+msgid "Not in"
+msgstr "არ შედის"
+
+msgid "Add new item set"
+msgstr "ახალი ჯგუფის დამატება"
+
+msgid "Geometry / Geography"
+msgstr "გეომეტრია / გეოგრაფია"
+
+msgid "Geometry"
+msgstr "გეომეტრია"
+
+msgid "Geography"
+msgstr "გეოგრაფია"
+
+msgid "Around a point"
+msgstr "წერტილის გარშემო"
+
+msgid "Inside a box"
+msgstr "მართკუთხედის შიგნით"
+
+msgid "Within a zone"
+msgstr "ზონის შიგნით"
+
+msgid "Within an area"
+msgstr "ტერიტორიის შიგნით"
+
+msgid "Radius"
+msgstr "რადიუსი"
+
+msgid "Latitude"
+msgstr "განედი"
+
+msgid "Longitude"
+msgstr "გრძედი"
+
+msgid "Unit"
+msgstr "ერთეული"
+
+msgid "kilometres"
+msgstr "კილომეტრი"
+
+msgid "metres"
+msgstr "მეტრი"
+
+msgid "Top left x y Bottom right x y"
+msgstr "ზედა მარცხენა x y ქვედა მარჯვენა x y"
+
+msgid "Top left latitude longitude Bottom right latitude longitude"
+msgstr "ზედა მარცხენა განედი გრძედი ქვედა მარჯვენა განედი გრძედი"
+
+msgid "Rectangle box with two opposite coordinates"
+msgstr "მართკუთხედი ორი საპირისპირო კოორდინატით"
+
+msgid "Rectangle box with two opposite geo-coordinates"
+msgstr "მართკუთხედი ორი საპირისპირო გეოკოორდინატით"
+
+msgid "WKT (well-known text that represents a geometry)"
+msgstr "WKT (გეომეტრიის წარმომადგენლობა)"
+
+msgid "Search by map feature presence"
+msgstr "ძებნა რუკის ობიექტის არსებობით"
+
+msgid "Has map features"
+msgstr "აქვს რუკის ობიექტები"
+
+msgid "Has no map features"
+msgstr "არ აქვს რუკის ობიექტები"
+
+msgid "Select map feature presence…"
+msgstr "აირჩიეთ რუკის ობიექტის არსებობა…"
+
+msgid "Search by geographic location"
+msgstr "ძებნა გეოგრაფიული მდებარეობით"
+
+msgid "Address"
+msgstr "მისამართი"
+
+msgid "Kilometers"
+msgstr "კილომეტრი"
+
+msgid "Miles"
+msgstr "მილი"
+
+msgid "Enter a search term"
+msgstr "შეიყვანეთ საძიებო სიტყვა"
+
+msgid "Open menu"
+msgstr "მენიუს გახსნა"
+
+msgid "Close menu"
+msgstr "მენიუს დახურვა"
+
+msgid "Query"
+msgstr "მოთხოვნა"
+
+msgid "Submit"
+msgstr "გაგზავნა"
+
+msgid "Part of %s"
+msgstr "ნაწილია %s-ის"
+
+msgid "Item"
+msgstr "ნივთი"
+
+msgid "Media"
+msgstr "მედია"
+
+msgid "Private"
+msgstr "პირადი"
+
+msgid "Has annotation"
+msgstr "აქვს ანოტაცია"
+
+msgid "Value Annotations"
+msgstr "მნიშვნელობის ანოტაციები"
+
+msgid "Select property…"
+msgstr "აირჩიეთ თვისება…"
+
+msgid "I want to submit anonymously"
+msgstr "გსურთ ანონიმურად გაგზავნა"
+
+msgid "Choose Files"
+msgstr "ფაილების არჩევა"
+
+msgid "No file chosen"
+msgstr "ფაილი არ არის არჩეული"
+
+msgid "Thank you for your submission"
+msgstr "გმადლობთ, თქვენი წარდგენა მიღებულია"
+
