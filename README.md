@@ -53,7 +53,14 @@ GitHub **tags alone are not enough** — each release needs a **zip asset** uplo
 | `ContributeEnhancements.zip` | `ContributeEnhancements/` |
 | `freedom-1.1.3-custom.2.zip` | `freedom/` |
 
-Build zips from sibling clones (see `scripts/build-release-zips.sh`), upload to each repo’s GitHub Release, then set URLs in `.env`:
+Build zips from the shared workspace script (sibling clones under `omeka-s/`), upload to each repo’s GitHub Release, then set URLs in `.env`:
+
+```bash
+# From your omeka-s workspace (not the instance config repo)
+bash scripts/build-release-zips.sh
+```
+
+Output: `release-zips/` next to your module clones (when run from the `omeka-s` workspace).
 
 ```text
 https://github.com/c-host/Omeka-S-module-InternetArchiveInboundSync/releases/download/v1.3.0/InternetArchiveInboundSync.zip
